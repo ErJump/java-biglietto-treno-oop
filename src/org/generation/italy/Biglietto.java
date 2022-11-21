@@ -7,8 +7,8 @@ public class Biglietto {
 	private int userAge = 0;
 	
     private static final BigDecimal PRICE_FOR_KM = new BigDecimal(0.21);
-    private static final BigDecimal OVER_65_DISCOUNT = new BigDecimal(0.60);
-    private static final BigDecimal YOUNG_DISCOUNT = new BigDecimal(0.80);
+    private static final BigDecimal OVER_65_DISCOUNT = new BigDecimal(0.6);
+    private static final BigDecimal YOUNG_DISCOUNT = new BigDecimal(0.8);
 
 	Biglietto(int userKm, int userAge) throws Exception{
 		isValidKm(userKm);
@@ -51,24 +51,29 @@ public class Biglietto {
 		}
 	}
 
-    private BigDecimal getDiscount() {
-        if(userAge > 65) {
-            return PRICE_FOR_KM;
-        } else if(userAge < 18) {
-            return YOUNG_DISCOUNT;
+    public BigDecimal getDiscount() {
+        if(userAge < 18) {
+            return YOUNG_DISCOUNT.multiply(PRICE_FOR_KM);
+        } else if(userAge > 65) {
+            return OVER_65_DISCOUNT.multiply(PRICE_FOR_KM);
         } else {
-            return BigDecimal.ONE;
+            return PRICE_FOR_KM;
         }
     }
-
+    
     public BigDecimal getTicketPrice() {
-        return PRICE_FOR_KM.multiply(new BigDecimal(userKm)).multiply(getDiscount());
+        return getDiscount().multiply(BigDecimal.valueOf(userKm));
     }
     
+    public String getTicketPriceFormatted() {
+    	double priceToDouble = getTicketPrice().doubleValue();
+        return String.format("%.2f", priceToDouble);
+    }
+
     @Override
     public String toString() {
     	return "Km: " + getUserKm()
     			+ "\nEtà: " + getUserAge()
-                + "\nPrezzo: " + getTicketPrice().doubleValue() + "$";
+                + "\nPrezzo: " + getTicketPriceFormatted() + "$";
     }
 }
