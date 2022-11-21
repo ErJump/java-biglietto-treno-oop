@@ -1,5 +1,7 @@
 package org.generation.italy;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -27,14 +29,15 @@ public class Biglietteria {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(b1);			
+			//System.out.println(b1);			
 		}
 		
 		FileWriter w = null;
 		
 		try {
 			w = new FileWriter("./biglietto-treno.txt", true);
-			w.write(b1.toString());
+			w.write("\n" + b1.toString());
+			w.write("\n----------");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		} finally {
@@ -43,6 +46,23 @@ public class Biglietteria {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		File f = new File("./biglietto-treno.txt");
+		
+		Scanner filesc = null;
+		
+		try {
+			filesc = new Scanner(f);
+			
+			while(filesc.hasNextLine()) {
+				String line = filesc.nextLine();
+				System.out.println(line);
+			}
+		} catch (FileNotFoundException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			filesc.close();
 		}
 	}
 }

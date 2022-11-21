@@ -1,5 +1,26 @@
+
 Km: 100
 Età: 25
-Prezzo: 23,10$
+Prezzo: 21,00$
+Biglietto flessibile: no
+Data di scadenza: 2022-12-21
+----------
+Km: 10
+Età: 66
+Prezzo: 1,39$
 Biglietto flessibile: sì
 Data di scadenza: 2023-02-19
+----------
+Km: 100
+Età: 17
+Prezzo: 16,80$
+Biglietto flessibile: no
+Data di scadenza: 2022-12-21
+----------
+
+Km: 100
+Età: 14
+Prezzo: 18,48$
+Biglietto flessibile: sì
+Data di scadenza: 2023-02-19
+----------
