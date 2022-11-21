@@ -1,20 +1,27 @@
 package org.generation.italy;
 
 public class Biglietto {
-	private int userKm; 
-	private int userAge;
+	private int userKm = 0; 
+	private int userAge = 0;
 	
-	Biglietto(){
-		
+	Biglietto(int userKm, int userAge) throws Exception{
+		isValidKm(userKm);
+		isValidEta(userAge);
 	}
 	
-	public int isValidKM() {
-		//verifica se i km sono positivi altrimenti lancio eccezione
-        if(userKm < 0) {
+	public void isValidKm(int km) throws Exception {
+        if(km < 0) {
             throw new Exception("I km devono essere positivi");
         } else {
-            return userKm;
+            this.userKm = km;
         }
-
+	}
+	
+	public void isValidEta(int eta) throws Exception {
+		if (eta <= 0) {
+			throw new Exception ("L'età deve essere positiva e diversa da 0");
+		} else {
+			this.userAge = eta;
+		}
 	}
 }
