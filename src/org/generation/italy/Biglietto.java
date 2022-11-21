@@ -12,6 +12,7 @@ public class Biglietto {
     private static final BigDecimal PRICE_FOR_KM = new BigDecimal(0.21);
     private static final BigDecimal OVER_65_DISCOUNT = new BigDecimal(0.6);
     private static final BigDecimal YOUNG_DISCOUNT = new BigDecimal(0.8);
+    private static final BigDecimal FLEXIBLE_PRICE = new BigDecimal(1.10);
     private static int NORMAL = 30;
     private static int FLEXIBLE = 90;
 
@@ -69,6 +70,9 @@ public class Biglietto {
     }
     
     public BigDecimal getTicketPrice() {
+    	if(flexible) {
+    		return getDiscount().multiply(BigDecimal.valueOf(userKm).multiply(FLEXIBLE_PRICE));
+    	}
         return getDiscount().multiply(BigDecimal.valueOf(userKm));
     }
     
