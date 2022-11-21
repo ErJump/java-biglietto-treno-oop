@@ -17,8 +17,8 @@ public class Biglietto {
     private static int FLEXIBLE = 90;
 
 	Biglietto(int userKm, int userAge, boolean flexible) throws Exception{
-		isValidKm(userKm);
-		isValidEta(userAge);
+		setUserKm(userKm);
+		setUserAge(userAge);
 		this.date = LocalDate.now();
 		this.flexible = flexible;
 	}
@@ -42,21 +42,27 @@ public class Biglietto {
 	public static BigDecimal getYoungDiscount() {
 		return YOUNG_DISCOUNT;
 	}
-
-	public void isValidKm(int km) throws Exception {
-        if(km < 0) {
-            throw new Exception("I km devono essere positivi");
-        } else {
-            this.userKm = km;
-        }
+	
+	public void setUserKm(int userKm) throws Exception {
+		if(isValidKm(userKm)) {
+			throw new Exception("I km devono essere positivi");
+		}
+		this.userKm = userKm;
 	}
 	
-	public void isValidEta(int eta) throws Exception {
-		if (eta <= 0) {
-			throw new Exception ("L'età deve essere positiva e diversa da 0");
-		} else {
-			this.userAge = eta;
+	public void setUserAge(int userAge) throws Exception {
+		if(isValidEta(userAge)) {
+			throw new Exception("L'età deve essere maggiore di 0");
 		}
+		this.userAge = userAge;
+	}
+
+	private boolean isValidKm(int km) {
+        return km<0;
+	}
+	
+	private boolean isValidEta(int eta) {
+		return eta<0;
 	}
 
     private BigDecimal getDiscount() {
