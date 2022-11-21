@@ -1,5 +1,7 @@
 package org.generation.italy;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Biglietteria {
@@ -26,6 +28,21 @@ public class Biglietteria {
 			e.printStackTrace();
 		} finally {
 			System.out.println(b1);			
+		}
+		
+		FileWriter w = null;
+		
+		try {
+			w = new FileWriter("./biglietto-treno.txt", true);
+			w.write(b1.toString());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		} finally {
+			try {
+				w.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
