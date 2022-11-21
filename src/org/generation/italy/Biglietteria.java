@@ -12,6 +12,8 @@ public class Biglietteria {
 		System.out.print("Inserire l'età del passeggero: ");
 		int userAge = sc.nextInt();
 		
+		sc.close();
+		
 		Biglietto b1 = null;
 		try {
 			b1 = new Biglietto(userKm, userAge);
